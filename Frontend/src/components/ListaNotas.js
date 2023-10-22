@@ -1,6 +1,5 @@
-import { useState } from "react";
-
-import { DivListaNotas, Row } from "./styles";
+import React, { useState } from "react";
+import { DivListaNotas, Row, Button } from "./styles";
 import { Link, useParams } from "react-router-dom";
 
 export const ListaNotas = ({ notas }) => {
@@ -19,7 +18,9 @@ export const ListaNotas = ({ notas }) => {
     return (
         <DivListaNotas>
             <h1>Notas da seção {secaoId}</h1>
-            <Link to="/cadastronotas">+ Nova Nota</Link>
+            <Link to="/cadastronotas" style={{ textDecoration: 'none' }}>
+                <Button style={{ background: "#14a47c", color: "white", fontWeight: "bold", padding: "0.5rem 1rem", borderRadius: "5px", border: "none" }}>+ Nova Nota</Button>
+            </Link>
             {listaNotas.filter((nota) => nota.idsecao === secaoId).map(({ notas }) => {
                 return (
                     notas.map((nota) => {

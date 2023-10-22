@@ -73,7 +73,8 @@ export const Title = styled.h1`
 export const Container = styled.div`
    display: flex;
    justify-content: center;
-
 `;
+
+
 
 
