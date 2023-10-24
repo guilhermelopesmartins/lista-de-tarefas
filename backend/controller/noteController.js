@@ -5,7 +5,7 @@ const { Nota } = require('../models')
  * @swagger
  * /notes:
  *   post:
- *     summary: Create a new note
+ *     summary: Criar nota
  *     description: Create a new note with the provided data
  *     tags:
  *       - Notes
@@ -23,7 +23,7 @@ const { Nota } = require('../models')
  *         description: Bad request
  */
 
-//Create a note
+//Cria nota
 exports.createNote = async(req, res) => {
     try {
         const newNote = await Nota.create(req.body);
@@ -37,7 +37,7 @@ exports.createNote = async(req, res) => {
  * @swagger
  * /notes:
  *   get:
- *     summary: Get all notes
+ *     summary: Obter todas notas
  *     description: Retrieve a list of all notes.
  *     tags:
  *       - Notes
@@ -48,7 +48,7 @@ exports.createNote = async(req, res) => {
  *         description: Internal server error
  */
 
-//Get all Notes
+//Obtem todas notas
 exports.getAllNotes = async(req,res) => {
     try {
         const allNotes = await Nota.findAll();
@@ -57,42 +57,114 @@ exports.getAllNotes = async(req,res) => {
         console.error(err.message)
     }
 }
-//Get One note
-exports.getOneNote = async(req,res) => {
+
+/**
+ * @swagger
+ * /notes/{id}:
+ *   get:
+ *     summary: Obter notas da seção
+ *     description: Retrieve a list of all notes.
+ *     tags:
+ *       - Notes
+ *     parameters:
+ *       - in: query
+ *         name: id_secao
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: Id da seção
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved notes
+ *       500:
+ *         description: Internal server error
+ */
+
+//Obtem todas notas da seção
+exports.getFromBoard = async(req,res) => {
     try {
-        const { id } = req.params;
-        const oneNote =  await pool.query("SELECT * FROM note WHERE note_id = $1", [id]);
-        res.json(oneNote.rows[0]);
+        const id = req.query.id_secao
+        const notesFromBoard =  await Nota.findAll({
+            where: {
+                id_secao: id
+            }
+        })
+        res.json(notesFromBoard);
         
     } catch (err) {
         console.error(err.message)
     }
 }
 
-//Update a note
+/**
+ * @swagger
+ * /notes:
+ *   put:
+ *     summary: Atualizar nota
+ *     description: Create a new note with the provided data
+ *     tags:
+ *       - Notes
+ *     parameters:
+ *       - name: body
+ *         in: body
+ *         description: Note object
+ *         required: true
+ *         schema:
+ *           $ref: '#/definitions/Note'
+ *     responses:
+ *       201:
+ *         description: Successfully created
+ *       400:
+ *         description: Bad request
+ */
 
+//Atualizar nota
 exports.updateOneNote = async(req, res) => {
     try {
-
-        const {id} = req.params;
-        const {description} = req.body
-
-        const updatedNote = await pool.query("UPDATE note SET description = $1 WHERE note_id= $2", [description, id])
-        
-        res.json("Note has been updated")
+        const updatedNote = await Nota.update(req.body, {
+            where: {
+                id: req.body.id
+            }
+        });
+        res.json('Nota atualizada');
     } catch (err) {
         console.error(err.message)
         
     }
 };
 
-//Delete a note
+/**
+ * @swagger
+ * /notes/{id}:
+ *   delete:
+ *     summary: Excluir nota
+ *     description: Retrieve a list of all notes.
+ *     tags:
+ *       - Notes
+ *     parameters:
+ *       - in: query
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: id da nota
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved notes
+ *       500:
+ *         description: Internal server error
+ */
 
+//Excluir nota
 exports.deleteOneNote = async(req, res) => {
     try {
-        const {id} = req.params;
-        const deleteNote = await pool.query("DELETE FROM note WHERE note_id = $1", [id]);
-        res.json("Note has been deleted");
+        const id = req.query.id;
+        const deleteNote = await Nota.destroy({
+            where: {
+                id: id
+            }
+        });
+        res.json("Nota excluida");
     } catch (err) {
         console.error(err.message)
         

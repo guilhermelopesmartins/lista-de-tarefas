@@ -12,9 +12,9 @@ app.post("/notes", noteController.createNote)
 
 app.get("/notes", noteController.getAllNotes)
 
-app.get("/notes/:id", noteController.getOneNote)
+app.get("/notes/:id", noteController.getFromBoard)
 
-app.put("/notes/:id", noteController.updateOneNote);
+app.put("/notes", noteController.updateOneNote);
 
 app.delete("/notes/:id", noteController.deleteOneNote)
 
