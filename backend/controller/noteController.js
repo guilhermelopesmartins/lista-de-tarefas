@@ -1,18 +1,54 @@
 const pool = require("../db")
 
+/**
+ * @swagger
+ * /notes:
+ *   post:
+ *     summary: Create a new note
+ *     description: Create a new note with the provided data
+ *     tags:
+ *       - Notes
+ *     parameters:
+ *       - name: body
+ *         in: body
+ *         description: Note object
+ *         required: true
+ *         schema:
+ *           $ref: '#/definitions/Note'
+ *     responses:
+ *       201:
+ *         description: Successfully created
+ *       400:
+ *         description: Bad request
+ */
+
 //Create a note
 exports.createNote = async(req, res) => {
     try {
-        const { description } = req.body;
-        const newNote = await pool.query("INSERT INTO tb_nota (description) VALUES($1) RETURNING *", [description])
+        const { note } = req.body;
+        const newNote = await pool.query("INSERT INTO tb_nota (id_secao, titulo, descricao, ultima) VALUES($1) RETURNING *", [note])
         res.json(newNote.rows[0]);
     } catch (err) {
         console.error(err.message)
     }
 }
 
-//Get all Notes
+/**
+ * @swagger
+ * /notes:
+ *   get:
+ *     summary: Get all notes
+ *     description: Retrieve a list of all notes.
+ *     tags:
+ *       - Notes
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved notes
+ *       500:
+ *         description: Internal server error
+ */
 
+//Get all Notes
 exports.getAllNotes = async(req,res) => {
     try {
         console.log("cheguei")
