@@ -1,11 +1,14 @@
 import './App.css';
-import Login from './components/Login';
+import React from 'react';
+
+import { SidebarRoutes } from './SidebarRoutes';
+import { DivGeral } from './components/styles';
 
 function App() {
   return (
-    <div className="Login">
-      <Login />
-    </div>
+    <DivGeral>
+      <SidebarRoutes />
+    </DivGeral>
   );
 }
 
