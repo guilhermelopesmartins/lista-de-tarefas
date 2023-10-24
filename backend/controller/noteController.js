@@ -1,4 +1,5 @@
 const pool = require("../db")
+const { Nota } = require('../models')
 
 /**
  * @swagger
@@ -25,9 +26,8 @@ const pool = require("../db")
 //Create a note
 exports.createNote = async(req, res) => {
     try {
-        const { note } = req.body;
-        const newNote = await pool.query("INSERT INTO tb_nota (id_secao, titulo, descricao, ultima) VALUES($1) RETURNING *", [note])
-        res.json(newNote.rows[0]);
+        const newNote = await Nota.create(req.body);
+        res.json(newNote);
     } catch (err) {
         console.error(err.message)
     }
@@ -51,10 +51,8 @@ exports.createNote = async(req, res) => {
 //Get all Notes
 exports.getAllNotes = async(req,res) => {
     try {
-        console.log("cheguei")
-        const allNotes =  await pool.query("SELECT * FROM tb_nota");
-        res.json(allNotes.rows);
-        
+        const allNotes = await Nota.findAll();
+        res.json(allNotes);
     } catch (err) {
         console.error(err.message)
     }

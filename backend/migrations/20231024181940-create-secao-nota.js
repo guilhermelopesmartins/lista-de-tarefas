@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable({schema: 'tarefas', tableName: 'SecaoNota'}, {
-      id_secao: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -15,17 +15,21 @@ module.exports = {
       descricao: {
         type: Sequelize.TEXT
       },
-      data_criacao: {
-        type: Sequelize.DATE,
-        allowNull: false
-      },
       id_usuario: {
         type: Sequelize.INTEGER,
         allowNull: false
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
       }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('SecaoNota');
+    await queryInterface.dropTable({schema:'tarefas', tableName:'SecaoNota'}, { force: true });
   }
 };

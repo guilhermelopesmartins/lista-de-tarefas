@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable({schema: 'tarefas', tableName: 'Cartao'}, {
-      id_cartao: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -22,17 +22,21 @@ module.exports = {
       checklist: {
         type: Sequelize.JSON
       },
-      data_criacao: {
-        type: Sequelize.DATE,
-        allowNull: false
-      },
       data_limite: {
         type: Sequelize.DATE,
         allowNull: false
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
       }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Cartao');
+    await queryInterface.dropTable({schema:'tarefas', tableName:'Cartao'}, { force: true });
   }
 };

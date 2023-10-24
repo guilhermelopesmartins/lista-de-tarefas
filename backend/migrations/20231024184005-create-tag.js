@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable({schema: 'tarefas', tableName: 'Tags'}, {
-      id_tag: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -16,10 +16,18 @@ module.exports = {
       cor: {
         type: Sequelize.STRING(7),
         allowNull: false
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
       }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Tags');
+    await queryInterface.dropTable({schema:'tarefas', tableName:'Tags'}, { force: true });
   }
 };

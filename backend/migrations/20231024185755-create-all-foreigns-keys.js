@@ -2,14 +2,14 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.changeColumn({schema: 'tarefas', tableName: 'Nota'}, 'id_secao', {
+    await queryInterface.changeColumn({schema: 'tarefas', tableName: 'Nota'}, 'id_tag', {
         type: Sequelize.DataTypes.INTEGER,
         references: {
           model: {
             tableName: 'Tags',
             schema: 'tarefas'
           },
-          key: 'id_tag'
+          key: 'id'
         },
         allowNull: false
     });
@@ -20,7 +20,7 @@ module.exports = {
             tableName: 'Usuario',
             schema: 'tarefas'
           },
-          key: 'id_usuario'
+          key: 'id'
         },
         allowNull: false
     });
@@ -31,7 +31,7 @@ module.exports = {
             tableName: 'Raia',
             schema: 'tarefas'
           },
-          key: 'id_raia'
+          key: 'id'
         },
         allowNull: false
     });
@@ -42,20 +42,41 @@ module.exports = {
             tableName: 'Quadro',
             schema: 'tarefas'
           },
-          key: 'id_quadro'
+          key: 'id'
         },
         allowNull: false
     });
-    await queryInterface.changeColumn({schema: 'tarefas', tableName: 'Quadro'}, 'id_quadro', {
+    await queryInterface.changeColumn({schema: 'tarefas', tableName: 'Quadro'}, 'id_usuario', {
         type: Sequelize.DataTypes.INTEGER,
         references: {
           model: {
             tableName: 'Usuario',
             schema: 'tarefas'
           },
-          key: 'id_usuario'
+          key: 'id'
         },
         allowNull: false
     });
+  },
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable({schema:'tarefas', tableName:'Nota'}, { force: true });
+  },
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable({schema:'tarefas', tableName:'SecaoNota'}, { force: true });
+  },
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable({schema:'tarefas', tableName:'Usuario'}, { force: true });
+  },
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable({schema:'tarefas', tableName:'Tags'}, { force: true });
+  },
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable({schema:'tarefas', tableName:'Quadro'}, { force: true });
+  },
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable({schema:'tarefas', tableName:'Raia'}, { force: true });
+  },
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable({schema:'tarefas', tableName:'Cartao'}, { force: true });
   }
 };

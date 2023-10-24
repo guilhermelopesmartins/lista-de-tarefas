@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable({schema: 'tarefas', tableName: 'Raia'}, {
-      id_raia: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -14,10 +14,18 @@ module.exports = {
       },
       id_quadro: {
         type: Sequelize.INTEGER
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
       }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Raia');
+    await queryInterface.dropTable({schema:'tarefas', tableName:'Raia'}, { force: true });
   }
 };

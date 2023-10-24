@@ -17,13 +17,12 @@ module.exports = (sequelize, DataTypes) => {
     id_secao: DataTypes.INTEGER,
     titulo: DataTypes.STRING,
     descricao: DataTypes.STRING,
-    ultima_atualizacao: DataTypes.DATE,
-    data_criacao: DataTypes.DATE,
     hash_imagem: DataTypes.STRING,
     id_tag: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Nota',
+    schema: 'tarefas'
   });
   return Nota;
 };

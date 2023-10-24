@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable({schema: 'tarefas', tableName: 'Usuario'}, {
-      id_usuario: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -24,10 +24,18 @@ module.exports = {
       senha: {
         type: Sequelize.STRING,
         allowNull: false
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
       }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Usuario');
+    await queryInterface.dropTable({schema:'tarefas', tableName:'Usuario'}, { force: true });
   }
 };

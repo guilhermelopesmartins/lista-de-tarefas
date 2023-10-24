@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable({schema: 'tarefas', tableName:'Nota'}, {
-      id_nota: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -20,23 +20,23 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false
       },
-      ultima_atualizacao: {
-        type: Sequelize.DATE,
-        allowNull: false
-      },
-      data_criacao: {
-        type: Sequelize.DATE,
-        allowNull: false
-      },
       hash_imagem: {
         type: Sequelize.STRING
       },
       id_tag: {
         type: Sequelize.INTEGER
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
       }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Nota');
+    await queryInterface.dropTable({schema:'tarefas', tableName:'Nota'}, { force: true });
   }
 };

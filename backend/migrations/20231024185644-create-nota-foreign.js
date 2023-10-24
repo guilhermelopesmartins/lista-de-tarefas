@@ -9,9 +9,12 @@ module.exports = {
             tableName: 'SecaoNota',
             schema: 'tarefas'
           },
-          key: 'id_secao'
+          key: 'id'
         },
         allowNull: false
     });
+  },
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable({schema:'tarefas', tableName:'Nota'}, { force: true });
   }
 };
