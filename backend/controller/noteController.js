@@ -1,5 +1,6 @@
 const pool = require("../db")
 const { Nota } = require('../models')
+const noteService = require('../services/noteService')
 
 /**
  * @swagger
@@ -26,10 +27,10 @@ const { Nota } = require('../models')
 //Cria nota
 exports.createNote = async(req, res) => {
     try {
-        const newNote = await Nota.create(req.body);
+        const newNote = await noteService.createNote(req.body);
         res.json(newNote);
     } catch (err) {
-        console.error(err.message)
+        res.json(err.message)
     }
 }
 
@@ -51,10 +52,10 @@ exports.createNote = async(req, res) => {
 //Obtem todas notas
 exports.getAllNotes = async(req,res) => {
     try {
-        const allNotes = await Nota.findAll();
+        const allNotes = await noteService.getAllNotes();
         res.json(allNotes);
     } catch (err) {
-        console.error(err.message)
+        res.json(err.message)
     }
 }
 
@@ -81,18 +82,13 @@ exports.getAllNotes = async(req,res) => {
  */
 
 //Obtem todas notas da seção
-exports.getFromBoard = async(req,res) => {
+exports.getFromSection = async(req,res) => {
     try {
         const id = req.query.id_secao
-        const notesFromBoard =  await Nota.findAll({
-            where: {
-                id_secao: id
-            }
-        })
+        const notesFromBoard =  await noteService.getFromSection(id);
         res.json(notesFromBoard);
-        
     } catch (err) {
-        console.error(err.message)
+        res.json(err.message)
     }
 }
 
@@ -119,7 +115,7 @@ exports.getFromBoard = async(req,res) => {
  */
 
 //Atualizar nota
-exports.updateOneNote = async(req, res) => {
+exports.updateNote = async(req, res) => {
     try {
         const updatedNote = await Nota.update(req.body, {
             where: {
@@ -128,7 +124,7 @@ exports.updateOneNote = async(req, res) => {
         });
         res.json('Nota atualizada');
     } catch (err) {
-        console.error(err.message)
+        res.json(err.message)
         
     }
 };
@@ -156,17 +152,13 @@ exports.updateOneNote = async(req, res) => {
  */
 
 //Excluir nota
-exports.deleteOneNote = async(req, res) => {
+exports.deleteNote = async(req, res) => {
     try {
         const id = req.query.id;
-        const deleteNote = await Nota.destroy({
-            where: {
-                id: id
-            }
-        });
+        const deleteNote = await noteService.deleteNote(id);
         res.json("Nota excluida");
     } catch (err) {
-        console.error(err.message)
+        res.json(err.message)
         
     }
 }

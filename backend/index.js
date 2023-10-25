@@ -12,11 +12,11 @@ app.post("/notes", noteController.createNote)
 
 app.get("/notes", noteController.getAllNotes)
 
-app.get("/notes/:id", noteController.getFromBoard)
+app.get("/notes/:id", noteController.getFromSection)
 
-app.put("/notes", noteController.updateOneNote);
+app.put("/notes", noteController.updateNote);
 
-app.delete("/notes/:id", noteController.deleteOneNote)
+app.delete("/notes/:id", noteController.deleteNote)
 
 // Serve Swagger UI
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
