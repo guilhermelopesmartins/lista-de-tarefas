@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const noteController = require("./controller/noteController");
+const sectionController = require("./controller/sectionController");
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swaggerConfig'); 
 
@@ -8,15 +9,18 @@ const swaggerSpec = require('./swaggerConfig');
 app.use(express.json())
 
 //ROUTES
-app.post("/notes", noteController.createNote)
+app.post("/notes", noteController.createNote);
 
-app.get("/notes", noteController.getAllNotes)
+app.get("/notes", noteController.getAllNotes);
 
-app.get("/notes/:id", noteController.getFromSection)
+app.get("/notes/:id", noteController.getFromSection);
 
 app.put("/notes", noteController.updateNote);
 
-app.delete("/notes/:id", noteController.deleteNote)
+app.delete("/notes/:id", noteController.deleteNote);
+
+//ROUTES
+app.get('/sections', sectionController.getAllSections);
 
 // Serve Swagger UI
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));

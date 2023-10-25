@@ -14,10 +14,16 @@ const options = {
             // Define the properties of your Note object
           },
         },
+        Sections: {
+          type: 'object',
+          properties: {
+            // Define the properties of your Note object
+          },
+        },
       },
       basePath: '/',
     },
-    apis: ['./controller/noteController.js'],
+    apis: ['./controller/noteController.js', './controller/sectionController.js'],
   };
 
 const swaggerSpec = swaggerJSDoc(options);

@@ -16,11 +16,11 @@ module.exports = (sequelize, DataTypes) => {
   SecaoNota.init({
     titulo: DataTypes.STRING,
     descricao: DataTypes.STRING,
-    data_criacao: DataTypes.DATE,
     id_usuario: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'SecaoNota',
+    schema: 'tarefas'
   });
   return SecaoNota;
 };

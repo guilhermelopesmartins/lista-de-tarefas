@@ -1,5 +1,3 @@
-const pool = require("../db")
-const { Nota } = require('../models')
 const noteService = require('../services/noteService')
 
 /**
@@ -117,11 +115,7 @@ exports.getFromSection = async(req,res) => {
 //Atualizar nota
 exports.updateNote = async(req, res) => {
     try {
-        const updatedNote = await Nota.update(req.body, {
-            where: {
-                id: req.body.id
-            }
-        });
+        const updatedNote = await noteService.updateNote(req.body);
         res.json('Nota atualizada');
     } catch (err) {
         res.json(err.message)
