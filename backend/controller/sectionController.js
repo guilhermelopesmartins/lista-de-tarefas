@@ -4,7 +4,7 @@ const sectionService = require('../services/sectionService');
  * @swagger
  * tags:
  *   - name: Sections
- *     description: Endpoints related to notes
+ *     description: Endpoints relacionados as seções de notas
  */
 
 /**

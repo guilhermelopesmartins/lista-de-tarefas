@@ -3,25 +3,52 @@ const swaggerJSDoc = require('swagger-jsdoc');
 const options = {
     swaggerDefinition: {
       info: {
-        title: 'Your API Title',
+        title: 'Lista de tarefas API',
         version: '1.0.0',
-        description: 'API description',
+        description: 'Organizador de notas e tarefas',
       },
       definitions: {
         Note: {
           type: 'object',
           properties: {
-            // Define the properties of your Note object
+            id:{
+              type: 'integer'
+            },
+            id_secao:{
+              type: 'integer'
+            },
+            titulo: {
+              type: 'string'
+            },
+            descricao: {
+              type: 'string'
+            },
+            hash_imagem: {
+              type: 'string'
+            },
+            id_tag: {
+              type: 'integer'
+            }
           },
         },
         Sections: {
           type: 'object',
           properties: {
-            // Define the properties of your Note object
+            id:{
+              type: 'integer'
+            },
+            id_usuario:{
+              type: 'integer'
+            },
+            titulo: {
+              type: 'string'
+            },
+            descricao: {
+              type: 'string'
+            }
           },
         },
-      },
-      basePath: '/',
+      }
     },
     apis: ['./controller/noteController.js', './controller/sectionController.js'],
   };
