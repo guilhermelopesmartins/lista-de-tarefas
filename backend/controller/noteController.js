@@ -2,6 +2,13 @@ const noteService = require('../services/noteService')
 
 /**
  * @swagger
+ * tags:
+ *   - name: Notes
+ *     description: Endpoints related to notes
+ */
+
+/**
+ * @swagger
  * /notes:
  *   post:
  *     summary: Criar nota

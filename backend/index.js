@@ -8,7 +8,7 @@ const swaggerSpec = require('./swaggerConfig');
 //MIDDLEWARE
 app.use(express.json())
 
-//ROUTES
+//NOTES ROUTES
 app.post("/notes", noteController.createNote);
 
 app.get("/notes", noteController.getAllNotes);
@@ -19,8 +19,16 @@ app.put("/notes", noteController.updateNote);
 
 app.delete("/notes/:id", noteController.deleteNote);
 
-//ROUTES
+//SECTION ROUTES
 app.get('/sections', sectionController.getAllSections);
+
+app.post('/sections', sectionController.createSection);
+
+app.get('/sections/:id', sectionController.getFromUser);
+
+app.put('/sections', sectionController.updateSection);
+
+app.delete('/sections/:id', sectionController.deleteSection)
 
 // Serve Swagger UI
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
