@@ -6,6 +6,11 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swaggerConfig'); 
 
 //MIDDLEWARE
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", 'GET,PUT,POST,DELETE,OPTIONS');
+    next();
+  })
 app.use(express.json())
 
 //NOTES ROUTES

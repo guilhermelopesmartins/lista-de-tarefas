@@ -3,7 +3,7 @@
     "username": "guilhermemartins",
     "password": "123456",
     "database": "guilhermemartins",
-    "host": "200.19.1.18",
+    "host": "192.168.20.18",
     "dialect": "postgres",
     "port": 5432
   },
