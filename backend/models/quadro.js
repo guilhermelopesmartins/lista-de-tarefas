@@ -15,11 +15,12 @@ module.exports = (sequelize, DataTypes) => {
   }
   Quadro.init({
     titulo: DataTypes.STRING,
-    data_criacao: DataTypes.DATE,
     id_usuario: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Quadro',
+    schema: 'tarefas',
+    freezeTableName: true
   });
   return Quadro;
 };

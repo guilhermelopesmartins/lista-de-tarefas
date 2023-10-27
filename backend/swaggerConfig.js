@@ -37,7 +37,7 @@ const options = {
             id:{
               type: 'integer'
             },
-            id_usuario:{
+            id_usuario: {
               type: 'integer'
             },
             titulo: {
@@ -48,9 +48,20 @@ const options = {
             }
           },
         },
+        Boards: {
+          type: 'object',
+          properties: {
+            id_usuario: {
+              type: 'integer'
+            },
+            titulo: {
+              type: 'string'
+            }
+          }
+        }
       }
     },
-    apis: ['./controller/noteController.js', './controller/sectionController.js'],
+    apis: ['./controller/noteController.js', './controller/sectionController.js', './controller/boardController.js'],
   };
 
 const swaggerSpec = swaggerJSDoc(options);

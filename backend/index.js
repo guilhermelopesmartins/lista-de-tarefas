@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const noteController = require("./controller/noteController");
 const sectionController = require("./controller/sectionController");
+const boardController = require("./controller/boardController");
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swaggerConfig'); 
 
@@ -33,7 +34,18 @@ app.get('/sections/:id', sectionController.getFromUser);
 
 app.put('/sections', sectionController.updateSection);
 
-app.delete('/sections/:id', sectionController.deleteSection)
+app.delete('/sections/:id', sectionController.deleteSection);
+
+//BOARDS ROUTES
+app.get('/boards', boardController.getAllBoards);
+
+app.post('/boards', boardController.createBoard);
+
+app.get('/boards/:id', boardController.getFromUser);
+
+app.put('/boards', boardController.updateBoard);
+
+app.delete('/boards/:id', boardController.deleteBoard);
 
 // Serve Swagger UI
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
