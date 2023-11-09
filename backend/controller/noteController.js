@@ -89,7 +89,9 @@ exports.getAllNotes = async(req,res) => {
 //Obtem todas notas da seção
 exports.getFromSection = async(req,res) => {
     try {
-        const id = req.query.id_secao
+        console.log('cheguei no controller de notas-getall');
+        const id = req.query.id_secao;
+        console.log(id);
         const notesFromBoard =  await noteService.getFromSection(id);
         res.json(notesFromBoard);
     } catch (err) {

@@ -1,20 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 
 export const SidebarLateral = ({ novaNota }) => {
-    const [secaonotas, setSecaoNotas] = useState([
-        {
-            id: '1',
-            secao: 'Seção 1',
-            notas: ['Nota 1', 'Nota 2', 'Nota 3', 'Nota 4', 'Nota 5', 'Nota 6']
-        },
-        {
-            id: '2',
-            secao: 'Seção 2',
-            notas: ['Nota 1', 'Nota 2', 'Nota 3', 'Nota 4', 'Nota 5', 'Nota 6', 'Nota 7', 'Nota 8']
-        },
-    ]);
+    
+    const [secaonotas, setSecaoNotas] = useState([]);
+
+    useEffect(()=>{
+        async function secoes(){
+            const nota = await fetch('http://localhost:8989/sections').then(res =>
+            res.json())
+
+            setSecaoNotas(nota)
+        } 
+
+        secoes()
+    },[])
 
     const [kanban, setKanban] = useState(['Kanban 1', 'Kanban 2']);
     const whiteTextStyle = { color: 'white' };
@@ -29,9 +30,11 @@ export const SidebarLateral = ({ novaNota }) => {
                 <hr style={{ margin: "0.5rem 0", borderColor: "gray" }} />
                 <SubMenu label="Notas" style={{ backgroundColor: "#1c2424", ...whiteTextStyle, ...boldTextStyle }}>
                     {secaonotas.map((secaonota) => {
+                        {console.log('aqui seção');
+                            console.log(secaonota); }
                         return (
-                            <MenuItem key={secaonota.secao} style={{ backgroundColor: "#1c2424"}}>
-                                <Link to={"/listarnotas/" + secaonota.id} style={whiteTextStyle}>{secaonota.secao}</Link>
+                            <MenuItem key={secaonota.id} style={{ backgroundColor: "#1c2424"}}>
+                                <Link to={"/listarnotas/" + secaonota.id} style={whiteTextStyle}>{secaonota.titulo}</Link>
                             </MenuItem>
                         );
                     })}

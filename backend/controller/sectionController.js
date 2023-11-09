@@ -31,6 +31,8 @@ const sectionService = require('../services/sectionService');
 
 exports.createSection = async (req, res) => {
     try {
+        console.log('cheguei no controller')
+        console.log(req.body)
         const newSection = await sectionService.createSection(req.body);
         res.json(newSection);
     } catch (err) {

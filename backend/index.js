@@ -4,7 +4,8 @@ const noteController = require("./controller/noteController");
 const sectionController = require("./controller/sectionController");
 const boardController = require("./controller/boardController");
 const swaggerUi = require('swagger-ui-express');
-const swaggerSpec = require('./swaggerConfig'); 
+const swaggerSpec = require('./swaggerConfig');
+const cors = require("cors"); 
 
 //MIDDLEWARE
 app.use((req, res, next) => {
@@ -13,6 +14,7 @@ app.use((req, res, next) => {
     next();
   })
 app.use(express.json())
+app.use(cors())
 
 //NOTES ROUTES
 app.post("/notes", noteController.createNote);

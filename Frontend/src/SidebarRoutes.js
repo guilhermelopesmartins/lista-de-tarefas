@@ -11,7 +11,7 @@ export const SidebarRoutes = () => {
         <BrowserRouter>
             <SidebarLateral />
             <Router>
-                <Route path="/listarnotas/:secaoId" element={<ListaNotas />} />
+                <Route path="/listarnotas/:id_secao" element={<ListaNotas />} />
                 <Route path="/secao" element={<Secao />} />
                 <Route path="/cadastronotas" element={<CadastroNotas />} />
             </Router>
