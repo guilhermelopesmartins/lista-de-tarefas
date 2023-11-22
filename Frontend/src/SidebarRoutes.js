@@ -5,6 +5,7 @@ import { CadastroNotas } from "./components/CadastroNotas";
 import { SidebarLateral } from "./components/SidebarLateral";
 import { Secao } from "./components/Secao";
 import { ListaNotas } from "./components/ListaNotas";
+import App from "./App";
 
 export const SidebarRoutes = () => {
     return (
@@ -13,7 +14,7 @@ export const SidebarRoutes = () => {
             <Router>
                 <Route path="/listarnotas/:id_secao" element={<ListaNotas />} />
                 <Route path="/secao" element={<Secao />} />
-                <Route path="/cadastronotas" element={<CadastroNotas />} />
+                <Route path="/cadastronotas/:id_secao" element={<CadastroNotas />} />
             </Router>
         </BrowserRouter>
     )

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import { Input, Button, DivButton, DivSecao } from "./styles";
 
 export const Secao = (secoes) => {
     const [titulo, setTitulo] = useState();
     const [descricao, setDescricao] = useState();
+    const secao = React.createContext();
 
     function cadastroSecao() {
         console.log("entrei")
@@ -13,18 +14,20 @@ export const Secao = (secoes) => {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                titulo: titulo,
-                descricao: descricao,
-                id_usuario: 1
-            })
+            body: JSON.stringify(
+                {
+                    titulo: titulo,
+                    descricao: descricao,
+                    id_usuario: 1
+                }
+            )
         })
             .then(res => {
                 res.json()
             })
             .catch(function (error) {
                 console.log("Messagem: " + error.message);
-              });
+            });
 
     }
 
