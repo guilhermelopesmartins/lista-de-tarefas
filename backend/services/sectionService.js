@@ -33,3 +33,10 @@ exports.deleteSection = (id) => {
 
     return repo.deleteSection(id);
 }
+
+exports.getById = (id) => {
+    if (id === 0)
+        throw new Error('Id inválido');
+    
+    return repo.getById(id);
+}

@@ -34,6 +34,8 @@ app.post('/sections', sectionController.createSection);
 
 app.get('/sections/:id', sectionController.getFromUser);
 
+app.get('/section/:id', sectionController.getById);
+
 app.put('/sections', sectionController.updateSection);
 
 app.delete('/sections/:id', sectionController.deleteSection);

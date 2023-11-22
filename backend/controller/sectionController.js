@@ -165,3 +165,34 @@ exports.deleteSection = async(req, res) => {
         
     }
 }
+
+/**
+ * @swagger
+ * /section/{id}:
+ *   get:
+ *     summary: Seção pelo Id
+ *     description: Seção pelo Id
+ *     tags:
+ *       - Sections
+ *     parameters:
+ *       - in: query
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: id
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved notes
+ *       500:
+ *         description: Internal server error
+ */
+exports.getById = async(req, res) => {
+    try{
+        const id = req.query.id;
+        const section = await sectionService.getById(id);
+        res.json(section);
+    } catch (err) {
+        res.json(err.message);
+    }
+}

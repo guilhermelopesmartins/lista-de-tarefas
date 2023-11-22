@@ -34,4 +34,14 @@ exports.deleteSection = async (id) => {
             id: id
         }
     });
+    return deletedSection;
+}
+
+exports.getById = async (id) => {
+    const section = await SecaoNota.findAll({
+        where: {
+            id: id
+        }
+    });
+    return section;
 }
