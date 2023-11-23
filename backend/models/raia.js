@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Raia',
+    schema: 'tarefas'
   });
   return Raia;
 };

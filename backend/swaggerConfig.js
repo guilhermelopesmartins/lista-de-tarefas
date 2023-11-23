@@ -58,10 +58,21 @@ const options = {
               type: 'string'
             }
           }
+        },
+        Columns: {
+          type: 'object',
+          properties: {
+            titulo: {
+              type: 'string'
+            },
+            id_quadro: {
+              type: 'integer'
+            }
+          }
         }
       }
     },
-    apis: ['./controller/noteController.js', './controller/sectionController.js', './controller/boardController.js'],
+    apis: ['./controller/noteController.js', './controller/sectionController.js', './controller/boardController.js', './controller/columnController.js'],
   };
 
 const swaggerSpec = swaggerJSDoc(options);
