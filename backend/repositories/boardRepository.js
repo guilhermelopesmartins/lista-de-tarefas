@@ -1,4 +1,5 @@
 const { Quadro } = require('../models');
+const { Raia } = require('../models');
 
 exports.getAllBoards = async () => {
     const allBoards = await Quadro.findAll();
@@ -16,6 +17,20 @@ exports.getFromUser = async (id) => {
 
 exports.createBoard = async (body) => {
     const newBoard = await Quadro.create(body);
+    await Raia.bulkCreate([
+        {
+            titulo: 'A Fazer',
+            id_quadro: newBoard.id,
+        },
+        {
+            titulo: 'Fazendo',
+            id_quadro: newBoard.id,
+        },
+        {
+            titulo: 'Feito',
+            id_quadro: newBoard.id,
+        }
+    ]);
     return newBoard;
 }
 

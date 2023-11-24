@@ -1,12 +1,12 @@
-const { Raias } = require('../models');
+const { Raia } = require('../models');
 
 exports.getAllColumns = async () => {
-    const allColumn = await Raias.findAll();
+    const allColumn = await Raia.findAll();
     return allColumn;
 }
 
 exports.getFromColumn = async (id) => {
-    const byBoard = await Raias.findAll({
+    const byBoard = await Raia.findAll({
         where: {
             id_quadro: id
         }
@@ -15,12 +15,12 @@ exports.getFromColumn = async (id) => {
 }
 
 exports.createColumn = async (body) => {
-    const newColumn = await Raias.create(body);
+    const newColumn = await Raia.create(body);
     return newColumn;
 }
 
 exports.updateColumn = async (body) => {
-    const updatedColumn = await Raias.update(body, {
+    const updatedColumn = await Raia.update(body, {
         where: {
             id: body.id
         }
@@ -29,7 +29,7 @@ exports.updateColumn = async (body) => {
 }
 
 exports.deleteColumn = async (id) => {
-    const deletedColumn = await Raias.destroy({
+    const deletedColumn = await Raia.destroy({
         where: {
             id: id
         }
