@@ -22,11 +22,13 @@ app.post("/notes", noteController.createNote);
 
 app.get("/notes", noteController.getAllNotes);
 
+app.get("/note/:id", noteController.getAllNotes);
+
 app.get("/notes/:id", noteController.getFromSection);
 
 app.put("/notes", noteController.updateNote);
 
-app.delete("/notes/:id", noteController.deleteNote);
+app.delete("/note/:id", noteController.deleteNote);
 
 //SECTION ROUTES
 app.get('/sections', sectionController.getAllSections);

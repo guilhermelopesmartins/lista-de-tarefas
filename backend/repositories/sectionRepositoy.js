@@ -43,5 +43,5 @@ exports.getById = async (id) => {
             id: id
         }
     });
-    return section;
+    return section[0];
 }

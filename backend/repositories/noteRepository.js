@@ -10,6 +10,11 @@ exports.getAllNotes = async () => {
     return allNotes;
 }
 
+exports.getNotesId = async () => {
+    const allNotes = await Nota.findAll();
+    return allNotes;
+}
+
 exports.getFromSection = async (id) => {
     const notesFromBoard =  await Nota.findAll({
         where: {
