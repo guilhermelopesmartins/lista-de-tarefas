@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@react-navigation/native": "^6.1.9",
+    "react-router-dom": "^6.20.1"
+  }
+}

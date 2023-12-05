@@ -1,18 +1,44 @@
-import { Button, Input, DivLogin, Title, Container } from './styles';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
-    return (
-        <Container>
-            <DivLogin>
-                <Title>Login</Title>
+  const [credenciais, setCredenciais] = useState({ email: '', senha: '' });
+  const navigate = useNavigate();
 
-                <Input type="text" name="user" id="user" placeholder="Usuário" /><br />
-                <Input type="password" name="password" id="password" placeholder="Senha" /><br />
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setCredenciais((prevCredenciais) => ({ ...prevCredenciais, [name]: value }));
+  };
 
-                <Button>Login</Button>
-            </DivLogin>
-        </Container>
-    );
-}
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // Lógica de login
+
+    // Redirecionamento para a página de notas após o login
+    navigate('/listarnotas');
+  };
+
+  return (
+    <div>
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Email:
+          <input type="email" name="email" value={credenciais.email} onChange={handleChange} />
+        </label>
+        <br />
+        <label>
+          Senha:
+          <input type="password" name="senha" value={credenciais.senha} onChange={handleChange} />
+        </label>
+        <br />
+        <button type="submit">Login</button>
+      </form>
+      <p>
+        Não tem uma conta? <Link to="/cadastro">Crie uma conta</Link>
+      </p>
+    </div>
+  );
+};
 
 export default Login;
