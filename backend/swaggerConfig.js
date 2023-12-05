@@ -69,10 +69,39 @@ const options = {
               type: 'integer'
             }
           }
+        },
+        Users: {
+          type: 'object',
+          properties: {
+            nome: {
+              type: 'string'
+            },
+            email: {
+              type: 'string'
+            },
+            data_nascimento: {
+              type: 'string',
+              default: 'yyyy-mm-dd'
+            },
+            senha: {
+              type: 'string'
+            }
+          }
+        },
+        Login: {
+          type: 'object',
+          properties: {
+            email: {
+              type: 'string'
+            },
+            senha: {
+              type: 'string'
+            }
+          }
         }
       }
     },
-    apis: ['./controller/noteController.js', './controller/sectionController.js', './controller/boardController.js', './controller/columnController.js'],
+    apis: ['./controller/noteController.js', './controller/sectionController.js', './controller/boardController.js', './controller/columnController.js', './controller/userController.js'],
   };
 
 const swaggerSpec = swaggerJSDoc(options);
