@@ -1,5 +1,6 @@
 import React, { useEffect, useState, createContext } from "react";
-import { Input, Button, DivButton, DivSecao } from "./styles";
+import { Input, Button, DivButton, DivSecao, H1 } from "./styles";
+import { Link } from "react-router-dom";
 
 export const Secao = (secoes) => {
     const [titulo, setTitulo] = useState();
@@ -33,12 +34,17 @@ export const Secao = (secoes) => {
 
     return (
         <DivSecao>
-            <h1>Cadastrar seção</h1>
-            <Input type="text" name="titulo" placeholder="Titulo" onChange={(e) => setTitulo(e.target.value)} style={{ borderRadius: "5px", borderWidth: "1px", padding: "5px" }} />
+            <br /><br />
+            <H1>Criar seção</H1>
+            <Input firstInput type="text" name="titulo" placeholder="Titulo" onChange={(e) => setTitulo(e.target.value)} style={{ borderRadius: "5px", borderWidth: "1px", padding: "5px" }} />
             <Input type="text" name="descricao" placeholder="Descricao" onChange={(e) => setDescricao(e.target.value)} style={{ borderRadius: "5px", borderWidth: "1px", padding: "5px" }} />
 
             <DivButton>
-                <Button onClick={cadastroSecao} style={{ background: "#14a47c", color: "white", fontWeight: "bold", padding: "0.5rem 1rem", borderRadius: "5px", border: "none" }}>Cadastrar</Button>
+                <Link to={"/listarnotas/"} >
+                    <Button onClick={cadastroSecao} style={{ background: "#b9a3c4", color: "white", fontWeight: "bold", padding: "0.5rem 1rem", borderRadius: "5px", border: "none" }}>
+                        Cadastrar
+                    </Button>
+                </Link>
             </DivButton>
         </DivSecao>
     );

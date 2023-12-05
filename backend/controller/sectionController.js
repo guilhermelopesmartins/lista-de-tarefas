@@ -189,7 +189,8 @@ exports.deleteSection = async(req, res) => {
  */
 exports.getById = async(req, res) => {
     try{
-        const id = req.query.id;
+        const id = req.query.id_secao;
+        console.log("node:", req.query.id_secao);
         const section = await sectionService.getById(id);
         res.json(section);
     } catch (err) {

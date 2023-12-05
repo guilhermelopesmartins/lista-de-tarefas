@@ -66,6 +66,34 @@ exports.getAllNotes = async(req,res) => {
 
 /**
  * @swagger
+ * /notes/id:
+ *   get:
+ *     summary: Obter nota pelo id
+ *     description: Retrieve a list of all notes.
+ *     tags:
+ *       - Notes
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved notes
+ *       500:
+ *         description: Internal server error
+ */
+
+//Obtem notas por id
+exports.getNotesId = async(req,res) => {
+    try {
+        const id = req.query.id;
+        console.log(id);
+        const notesId =  await noteService.getNotesId(id);
+        res.json(notesId);
+    } catch (err) {
+        res.json(err.message)
+    }
+    
+}
+
+/**
+ * @swagger
  * /notes/{id}:
  *   get:
  *     summary: Obter notas da seção

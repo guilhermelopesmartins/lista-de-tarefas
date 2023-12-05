@@ -24,34 +24,34 @@ export const SidebarLateral = ({ novaNota }) => {
     const boldTextStyle = { fontWeight: 'bold' };
 
     return (
-        <Sidebar style={{ backgroundColor: "#1c2424", width: "250px", height: "100%", display: 'flex', flexDirection: 'column' }}>
-            <Menu style={{ backgroundColor: "#1c2424" }}>
-                <MenuItem>
+        <Sidebar style={{ position: 'fixed', minHeight: '45.7rem', overflowY: 'auto', overflowX: 'hidden', zIndex: 3, backgroundColor: '#b9a3c4', minWidth: '15rem' }}>
+            <Menu style={{backgroundColor: "#b9a3c4" }}>
+                <MenuItem style={{ backgroundColor: "#b9a3c4" }}>
                     <Link to="/" style={{ ...whiteTextStyle, ...boldTextStyle, textDecoration: 'none', fontSize: '13pt' }}>Home</Link>
                 </MenuItem>
-                <hr style={{ margin: "0.5rem 0", borderColor: "gray" }} />
-                <SubMenu label="Seções" style={{ backgroundColor: "#1c2424", ...whiteTextStyle, ...boldTextStyle, fontSize: '13pt' }}>
+                <hr style={{ margin: "0.5rem 0", borderColor: "" }} />
+                <SubMenu label="Seções" style={{ backgroundColor: "#b9a3c4", ...whiteTextStyle, ...boldTextStyle, fontSize: '13pt' }}>
                     {secaonotas.map((secaonota) => {
                         return (
-                            <MenuItem suffix={<GoPencil color='white' />} key={secaonota.id} style={{ backgroundColor: "#1c2424", display: "flex", justifyContent: 'space-between' }}>
+                            <MenuItem key={secaonota.id} style={{ backgroundColor: "#b9a3c4", display: "flex", justifyContent: 'space-between' }}>
                                 <Link to={"/listarnotas/" + secaonota.id} style={{ textDecoration: 'none' }}><span style={{ color: 'white', fontSize: '13pt' }}>{secaonota.titulo}</span></Link>
                             </MenuItem>
                         );
                     })}
-                    <MenuItem style={{ backgroundColor: "#1c2424" }}>
+                    <MenuItem style={{ backgroundColor: "#b9a3c4" }}>
                         <Link to="/secao" style={{ textDecoration: 'none' }}><span style={{ color: 'white', fontSize: '13pt' }}>+ Nova Seção</span></Link>
                     </MenuItem>
                 </SubMenu>
-                <hr style={{ margin: "0.5rem 0", borderColor: "gray" }} />
-                <SubMenu label="Kanban" style={{ backgroundColor: "#1c2424", ...whiteTextStyle, ...boldTextStyle, fontSize: '13pt' }}>
+                <hr style={{ margin: "0.5rem 0", borderColor: "" }} />
+                <SubMenu label="Kanban" style={{ backgroundColor: "#b9a3c4", ...whiteTextStyle, ...boldTextStyle, fontSize: '13pt' }}>
                     {kanban.map((kanban) => {
                         return (
-                            <MenuItem key={kanban} style={{ backgroundColor: "#1c2424" }}>
+                            <MenuItem key={kanban} style={{ backgroundColor: "#b9a3c4" }}>
                                 <span style={{ color: 'white', fontSize: '13pt', textDecoration: 'none' }}>{kanban}</span>
                             </MenuItem>
                         );
                     })}
-                    <MenuItem style={{ backgroundColor: "#1c2424" }}>
+                    <MenuItem style={{ backgroundColor: "#b9a3c4" }}>
                         <Link to="/novokanban" style={{ textDecoration: 'none' }}><span style={{ color: 'white', fontSize: '13pt' }}>+ Novo Kanban</span></Link>
                     </MenuItem>
                 </SubMenu>
