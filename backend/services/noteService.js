@@ -33,3 +33,7 @@ exports.updateNote = (body) => {
 exports.deleteNote = (id) => {
     return repo.deleteNote(id);
 }
+
+exports.getByTitle = (title) => {
+    return repo.getByTitle(title);
+}

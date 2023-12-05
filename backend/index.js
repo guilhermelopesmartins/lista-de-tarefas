@@ -32,6 +32,8 @@ app.put("/notes", noteController.updateNote);
 
 app.delete("/note/:id", noteController.deleteNote);
 
+app.get("/notes/title/:title", noteController.getByTitle);
+
 //SECTION ROUTES
 app.get('/sections', sectionController.getAllSections);
 

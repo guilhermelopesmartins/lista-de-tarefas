@@ -193,3 +193,35 @@ exports.deleteNote = async(req, res) => {
         
     }
 }
+
+/**
+ * @swagger
+ * /notes/title/{title}:
+ *   get:
+ *     summary: Obter notas pelo nome
+ *     description: Obter notas pelo nome
+ *     tags:
+ *       - Notes
+ *     parameters:
+ *       - in: query
+ *         name: title
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Titulo da nota
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved notes
+ *       500:
+ *         description: Internal server error
+ */
+
+exports.getByTitle = async(req, res) => {
+    try {
+        const title = req.query.title;
+        const notes = await noteService.getByTitle(title);
+        res.json(notes);
+    } catch (err) {
+        res.json(err.message);
+    }
+}
