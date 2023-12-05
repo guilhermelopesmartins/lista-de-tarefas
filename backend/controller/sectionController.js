@@ -31,8 +31,6 @@ const sectionService = require('../services/sectionService');
 
 exports.createSection = async (req, res) => {
     try {
-        console.log('cheguei no controller')
-        console.log(req.body)
         const newSection = await sectionService.createSection(req.body);
         res.json(newSection);
     } catch (err) {
@@ -90,9 +88,7 @@ exports.getAllSections = async (req, res) => {
 //Obtem todas notas da seção
 exports.getFromUser = async (req,res) => {
     try {
-        const id = req.query.id_usuario
-        console.log(id);
-        console.log('cheguei');
+        const id = req.query.id_usuario;
         const sectionsFromUser =  await sectionService.getFromUser(id);
         res.json(sectionsFromUser);
     } catch (err) {
@@ -190,7 +186,6 @@ exports.deleteSection = async(req, res) => {
 exports.getById = async(req, res) => {
     try{
         const id = req.query.id_secao;
-        console.log("node:", req.query.id_secao);
         const section = await sectionService.getById(id);
         res.json(section);
     } catch (err) {

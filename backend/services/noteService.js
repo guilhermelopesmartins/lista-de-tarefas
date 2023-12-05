@@ -13,8 +13,8 @@ exports.getAllNotes = () => {
     return repo.getAllNotes();
 }
 
-exports.getNotesId = () => {
-    return repo.getNotesId();
+exports.getById = (id) => {
+    return repo.getById(id);
 }
 
 exports.getFromSection = (id) => {

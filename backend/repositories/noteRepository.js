@@ -12,9 +12,13 @@ exports.getAllNotes = async () => {
     return allNotes;
 }
 
-exports.getNotesId = async () => {
-    const allNotes = await Nota.findAll();
-    return allNotes;
+exports.getById = async (id) => {
+    const note = await Nota.findAll({
+        where: {
+            id: id
+        }
+    });
+    return note;
 }
 
 exports.getFromSection = async (id) => {

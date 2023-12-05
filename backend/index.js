@@ -24,7 +24,7 @@ app.post("/notes", noteController.createNote);
 
 app.get("/notes", noteController.getAllNotes);
 
-app.get("/note/:id", noteController.getAllNotes);
+app.get("/note/:id", noteController.getById);
 
 app.get("/notes/:id", noteController.getFromSection);
 
