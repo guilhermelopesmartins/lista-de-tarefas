@@ -4,7 +4,8 @@ const noteController = require("./controller/noteController");
 const sectionController = require("./controller/sectionController");
 const boardController = require("./controller/boardController");
 const columnController = require("./controller/columnController");
-const userController = require("./controller/userController")
+const userController = require("./controller/userController");
+const tagController = require("./controller/tagController");
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swaggerConfig');
 const cors = require("cors"); 
@@ -78,6 +79,10 @@ app.get('/users/:id', userController.getById);
 //app.put('/users', userController.updateuser);
 
 app.delete('/users/:id', userController.deleteUser);
+
+app.get('/tags', tagController.getAllTags);
+
+app.get('/tags/:id', tagController.getById);
 
 // Serve Swagger UI
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
