@@ -1,4 +1,6 @@
-const { Nota } = require('../models')
+const { Nota } = require('../models');
+const { Sequelize } = require('sequelize');
+const { Op } = Sequelize;
 
 exports.createNote = async (body) => {
     const newNote = await Nota.create(body);
@@ -10,9 +12,13 @@ exports.getAllNotes = async () => {
     return allNotes;
 }
 
-exports.getNotesId = async () => {
-    const allNotes = await Nota.findAll();
-    return allNotes;
+exports.getById = async (id) => {
+    const note = await Nota.findAll({
+        where: {
+            id: id
+        }
+    });
+    return note;
 }
 
 exports.getFromSection = async (id) => {
@@ -40,4 +46,15 @@ exports.deleteNote = async (id) => {
         }
     });
     return deleteNote;
+}
+
+exports.getByTitle = async(title) => {
+    const notes = await Nota.findAll({
+        where: {
+            titulo: {
+                [Op.like]: `%${title}%`
+            }
+        }
+    });
+    return notes;
 }

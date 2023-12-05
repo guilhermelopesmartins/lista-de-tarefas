@@ -66,12 +66,19 @@ exports.getAllNotes = async(req,res) => {
 
 /**
  * @swagger
- * /notes/id:
+ * /note/id:
  *   get:
  *     summary: Obter nota pelo id
  *     description: Retrieve a list of all notes.
  *     tags:
  *       - Notes
+ *     parameters:
+ *       - in: query
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: Id da seção
  *     responses:
  *       200:
  *         description: Successfully retrieved notes
@@ -80,12 +87,11 @@ exports.getAllNotes = async(req,res) => {
  */
 
 //Obtem notas por id
-exports.getNotesId = async(req,res) => {
+exports.getById = async(req,res) => {
     try {
         const id = req.query.id;
-        console.log(id);
-        const notesId =  await noteService.getNotesId(id);
-        res.json(notesId);
+        const noteId =  await noteService.getById(id);
+        res.json(noteId);
     } catch (err) {
         res.json(err.message)
     }
@@ -117,9 +123,7 @@ exports.getNotesId = async(req,res) => {
 //Obtem todas notas da seção
 exports.getFromSection = async(req,res) => {
     try {
-        console.log('cheguei no controller de notas-getall');
         const id = req.query.id_secao;
-        console.log(id);
         const notesFromBoard =  await noteService.getFromSection(id);
         res.json(notesFromBoard);
     } catch (err) {
@@ -191,5 +195,37 @@ exports.deleteNote = async(req, res) => {
     } catch (err) {
         res.json(err.message)
         
+    }
+}
+
+/**
+ * @swagger
+ * /notes/title/{title}:
+ *   get:
+ *     summary: Obter notas pelo nome
+ *     description: Obter notas pelo nome
+ *     tags:
+ *       - Notes
+ *     parameters:
+ *       - in: query
+ *         name: title
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Titulo da nota
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved notes
+ *       500:
+ *         description: Internal server error
+ */
+
+exports.getByTitle = async(req, res) => {
+    try {
+        const title = req.query.title;
+        const notes = await noteService.getByTitle(title);
+        res.json(notes);
+    } catch (err) {
+        res.json(err.message);
     }
 }

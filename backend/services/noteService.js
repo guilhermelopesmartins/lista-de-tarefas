@@ -13,8 +13,8 @@ exports.getAllNotes = () => {
     return repo.getAllNotes();
 }
 
-exports.getNotesId = () => {
-    return repo.getNotesId();
+exports.getById = (id) => {
+    return repo.getById(id);
 }
 
 exports.getFromSection = (id) => {
@@ -32,4 +32,8 @@ exports.updateNote = (body) => {
 
 exports.deleteNote = (id) => {
     return repo.deleteNote(id);
+}
+
+exports.getByTitle = (title) => {
+    return repo.getByTitle(title);
 }

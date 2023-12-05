@@ -120,7 +120,6 @@ exports.getAllUsers = async(req,res) => {
 exports.getById = async(req,res) => {
     try {
         const id = req.query.id_secao;
-        console.log(id);
         const usersById =  await userService.getById(id);
         res.json(usersById);
     } catch (err) {

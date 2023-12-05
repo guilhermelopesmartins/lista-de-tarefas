@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 
 exports.createUser = async (body) => {
     body.senha = await bcrypt.hash(body.senha, 10);
-    console.log(body);
     const newUser = await Usuario.create(body);
     return newUser;
 }

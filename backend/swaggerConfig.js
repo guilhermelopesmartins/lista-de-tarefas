@@ -101,7 +101,7 @@ const options = {
         }
       }
     },
-    apis: ['./controller/noteController.js', './controller/sectionController.js', './controller/boardController.js', './controller/columnController.js', './controller/userController.js'],
+    apis: ['./controller/noteController.js', './controller/sectionController.js', './controller/boardController.js', './controller/columnController.js', './controller/userController.js', './controller/tagController.js'],
   };
 
 const swaggerSpec = swaggerJSDoc(options);
