@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Cadastro = () => {
-  const [usuario, setUsuario] = useState({ nome: '', email: '', senha: '' });
+  const [usuario, setUsuario] = useState({ nome: '', email: '', data_nascimento: '', senha: '' });
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -12,7 +12,31 @@ const Cadastro = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Implemente a lógica de cadastro aqui
+    // Lógica de login
+    const responseData = await fetch('http://localhost:8989/users', {
+      method: 'POST',
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(
+          {
+              nome: usuario.nome,
+              email: usuario.email,
+              data_nascimento: usuario.data_nascimento,
+              senha: usuario.senha
+          }
+      )
+  })
+
+  const userData = await responseData.json();
+  if (typeof(userData) == 'string'){
+    alert(userData);
+    return;
+  }
+  localStorage.setItem('user', JSON.stringify(userData))
+  // Redirecionamento para a página de notas após o login
+  navigate('/listasecoes');
   };
 
   return (
@@ -39,6 +63,18 @@ const Cadastro = () => {
             style={{ width: '100%', padding: '8px', marginTop: '5px' }}
           />
         </label>
+
+        <label style={{ marginBottom: '10px', textAlign: 'left' }}>
+          <strong>Data de nascimento:</strong>
+          <input
+            type="date"
+            name="data_nascimento"
+            value={usuario.data_nascimento}
+            onChange={handleChange}
+            style={{ width: '100%', padding: '8px', marginTop: '5px' }}
+          />
+        </label>
+
         <label style={{ marginBottom: '10px', textAlign: 'left' }}>
           <strong>Senha:</strong>
           <input

@@ -26,8 +26,13 @@ const Login = () => {
                 }
             )
         });
-          const userData = await responseData.json();
-          localStorage.setItem('user', JSON.stringify(userData))
+
+        const userData = await responseData.json();
+        if (typeof(userData) == 'string'){
+          alert(userData);
+          return;
+        }
+        localStorage.setItem('user', JSON.stringify(userData))
     // Redirecionamento para a página de notas após o login
     navigate('/listasecoes');
   };
