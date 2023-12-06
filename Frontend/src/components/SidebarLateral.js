@@ -7,10 +7,13 @@ import { Span, StyledLink } from './styles';
 export const SidebarLateral = ({ novaNota }) => {
 
     const [secaonotas, setSecaoNotas] = useState([]);
-
+    
+    const storageItem = localStorage.getItem('user');
+    const id_usuario = JSON.parse(storageItem).id;
     useEffect(() => {
         async function secoes() {
-            const nota = await fetch('http://localhost:8989/sections').then(res =>
+            const nota = await fetch(`http://localhost:8989/sections/id?` + new URLSearchParams({ id_usuario }).toString())
+            .then(res =>
                 res.json())
 
             setSecaoNotas(nota)

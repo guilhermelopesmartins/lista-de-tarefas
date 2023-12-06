@@ -13,9 +13,23 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Lógica de login
-
+    const responseData = await fetch('http://localhost:8989/users/login', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(
+                {
+                    email: credenciais.email,
+                    senha: credenciais.senha
+                }
+            )
+        });
+          const userData = await responseData.json();
+          localStorage.setItem('user', JSON.stringify(userData))
     // Redirecionamento para a página de notas após o login
-    navigate('/listarnotas');
+    navigate('/listasecoes');
   };
 
   return (
@@ -30,7 +44,7 @@ const Login = () => {
             value={credenciais.email}
             onChange={handleChange}
             style={{ width: '100%', padding: '8px', marginTop: '5px' }}
-          />
+            />
         </label>
         <label style={{ marginBottom: '10px', textAlign: 'left' }}>
           <strong>Senha:</strong>

@@ -10,9 +10,9 @@ export const Secao = (secoes) => {
 
     useEffect(() => {
         async function secao() {
-
-            const secao = await fetch(`http://localhost:8989/section/id?` + new URLSearchParams({ id_secao }).toString()).then(res =>
-                res.json())
+            const secao = undefined;
+            if (id_secao != null)
+                secao = await fetch(`http://localhost:8989/section/id?` + new URLSearchParams({ id_secao }).toString()).then(res => res.json())
             console.log(secao)
             setSecao(secao)
         }
@@ -20,9 +20,8 @@ export const Secao = (secoes) => {
         secao()
     }, [id_secao])
 
-    function cadastroSecao() {
-        console.log("entrei")
-        fetch('http://localhost:8989/sections', {
+    async function cadastroSecao() {
+        let response = await fetch('http://localhost:8989/sections', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -35,19 +34,13 @@ export const Secao = (secoes) => {
                     id_usuario: 1
                 }
             )
-        })
-            .then(res => {
-                res.json()
-            })
-            .catch(function (error) {
-                console.log("Messagem: " + error.message);
-            });
+        });
+        secao = await response.json();
 
     }
 
-    function atualizarSecao() {
-        console.log("entrei")
-        fetch('http://localhost:8989/sections', {
+    async function atualizarSecao() {
+        let response = await fetch('http://localhost:8989/sections', {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
@@ -61,13 +54,7 @@ export const Secao = (secoes) => {
                 }
             )
         })
-            .then(res => {
-                res.json()
-            })
-            .catch(function (error) {
-                console.log("Messagem: " + error.message);
-            });
-
+        secao = await response.json();
     }
 
     return (
@@ -78,7 +65,7 @@ export const Secao = (secoes) => {
             <Input type="text" value={secao !== undefined ? secao.descricao : ''} name="descricao" placeholder="Descricao" onChange={(e) => setDescricao(e.target.value)} style={{ borderRadius: "5px", borderWidth: "1px", padding: "5px" }} />
 
             <DivButton>
-                <Link to={"/listarnotas/"} >
+                <Link to={"/listarnotas/" + secao.id} >
                     {secao !== undefined ?
                         <Button onClick={atualizarSecao} style={{ background: "#b9a3c4", color: "white", fontWeight: "bold", padding: "0.5rem 1rem", borderRadius: "5px", border: "none" }}>
                             Atualizar
