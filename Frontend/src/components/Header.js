@@ -1,11 +1,10 @@
-import React from "react";
+import React from 'react';
 import { DivHeader, H1 } from "./styles";
 
-export const Header = () => {
-
+export const Header = ({ title, textColor }) => {
     return (
         <DivHeader>
-            <h1>Lista de tarefas</h1>
+            <H1 style={{ color: textColor }}>{title}</H1>
         </DivHeader>
-    )
-}
+    );
+};

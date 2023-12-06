@@ -1,21 +1,19 @@
-import './App.css';
 import React from 'react';
-
-//import { SidebarRoutes } from './SidebarRoutes';
-import { DivGeral } from './components/styles';
-import { Header } from './components/Header';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './components/Login';
-
-
+import Cadastro from "./components/Cadastro";
+import { ListaNotas } from "./components/ListaNotas";
 
 function App() {
   return (
-    <>
-      <Header/>
-    <DivGeral>
-      <Login/>
-    </DivGeral>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/cadastro" element={<Cadastro />} />
+        <Route path="/listarnotas" element={<ListaNotas />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </Router>
   );
 }
 
