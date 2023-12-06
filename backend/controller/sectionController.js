@@ -153,6 +153,7 @@ exports.updateSection = async(req, res) => {
 //Excluir seção
 exports.deleteSection = async(req, res) => {
     try {
+        console.log("entrei");
         const id = req.query.id;
         const deletedSection = await sectionService.deleteSection(id);
         res.json("Seção excluida");
@@ -185,6 +186,7 @@ exports.deleteSection = async(req, res) => {
  */
 exports.getById = async(req, res) => {
     try{
+        console.log("entrei");
         const id = req.query.id_secao;
         const section = await sectionService.getById(id);
         res.json(section);

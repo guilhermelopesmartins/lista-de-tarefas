@@ -89,7 +89,9 @@ exports.getAllNotes = async(req,res) => {
 //Obtem notas por id
 exports.getById = async(req,res) => {
     try {
-        const id = req.query.id;
+        console.log("entrei no get by id controller");
+        const id = req.query.id_nota;
+        console.log("controller", req.query)
         const noteId =  await noteService.getById(id);
         res.json(noteId);
     } catch (err) {

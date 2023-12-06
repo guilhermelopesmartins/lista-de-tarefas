@@ -13,11 +13,14 @@ exports.getAllNotes = async () => {
 }
 
 exports.getById = async (id) => {
+    console.log(id);
     const note = await Nota.findAll({
         where: {
             id: id
         }
     });
+    console.log("entrei repo");
+    console.log("nota node",note);
     return note;
 }
 
@@ -45,6 +48,7 @@ exports.deleteNote = async (id) => {
             id: id
         }
     });
+    console.log("entrei", id);
     return deleteNote;
 }
 

@@ -8,17 +8,27 @@ export const CadastroNotas = () => {
     const [descricao, setDescricao] = useState();
     const [tag, setTag] = useState();
     const [nota, setNota] = useState();
+    const [tags, setTags] = useState();
+
+    console.log(id_nota);
 
     useEffect(() => {
         async function notas() {
             const nota = await fetch(`http://localhost:8989/note/id_nota?` + new URLSearchParams({ id_nota }).toString()).then(res =>
                 res.json())
-            console.log(nota)
+            console.log("notas", nota)
             setNota(nota[0])
+
+            const tags = await fetch(`http://localhost:8989/tags`).then(res =>
+                res.json())
+
+            setTags(tags)
+            console.log("notas", nota)
         }
 
         notas()
     }, [id_nota])
+
 
     function cadastroNota() {
         console.log("entrei", tag);
@@ -49,21 +59,20 @@ export const CadastroNotas = () => {
 
     return (
         <DivNotas>
-            <H1>{nota ? 'Atualizar nota' : 'Criar nota'}</H1>
-            <Select onChange={(e) => setTag(e.target.value)}>
+            <H1>Criar nota</H1>
+            <Select onChange={(e) => setTag(e.target.value)} value={nota != undefined ? nota.id_tag : ''}>
                 <Option value="">Selecione uma tag</Option>
-                <Option value="0">Geral</Option>
-                <Option value="1">Pessoal</Option>
-                <Option value="2">Estudos</Option>
-                <Option value="3">Compras</Option>
-                <Option value="4">Lista de desejos</Option>
+                {tags !== undefined ? tags.map(({ id, descricao }) => {
+                    return <Option value={id}>{descricao}</Option>
+                })
+                    : ''}
             </Select>
             {console.log(nota)}
-            <Input value={nota != undefined ? nota : ''} type="text" name="titulo" placeholder="Titulo" onChange={(e) => setTitulo(e.target.value)} style={{ borderRadius: "5px", borderWidth: "1px", padding: "5px" }} />
-            <Textarea name="descricao" placeholder="Digite suas anotações" onChange={(e) => setDescricao(e.target.value)} style={{ borderRadius: "5px", borderWidth: "1px", padding: "5px" }} />
+            <Input value={nota != undefined ? nota.titulo : ''} type="text" name="titulo" placeholder="Titulo" onChange={(e) => setTitulo(e.target.value)} style={{ borderRadius: "5px", borderWidth: "1px", padding: "5px" }} />
+            <Textarea value={nota != undefined ? nota.descricao : ''} name="descricao" placeholder="Digite suas anotações" onChange={(e) => setDescricao(e.target.value)} style={{ borderRadius: "5px", borderWidth: "1px", padding: "5px" }} />
             <DivButton>
                 <Link to={"/listarnotas/" + id_secao} style={{ textDecoration: 'none' }}>
-                    <Button onClick={cadastroNota}>{nota ? 'Atualizar' : 'Criar'}</Button>
+                    <Button onClick={cadastroNota}>Criar</Button>
                 </Link>
             </DivButton>
         </DivNotas>

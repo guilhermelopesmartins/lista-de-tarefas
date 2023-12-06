@@ -14,6 +14,7 @@ exports.getAllNotes = () => {
 }
 
 exports.getById = (id) => {
+    console.log("entrei no getbyid repo")
     return repo.getById(id);
 }
 
