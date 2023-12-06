@@ -18,6 +18,9 @@ export const Button = styled.button`
 
 export const H1 = styled.h1`
 color:${(props) => props.gray ? '#636263' : '#b9a3c4'};
+justify-content: space-between;
+display: flex;
+align-items: center;
 `;
 
 export const Input = styled.input`
@@ -54,6 +57,10 @@ export const Select = styled.select`
 
 `;
 
+export const DivNomeSecao = styled.div`
+   display: inline;
+`;
+
 export const Option = styled.option`
    background: white;
 `;
@@ -67,7 +74,7 @@ export const DivNotas = styled.div`
 
 export const DivListaNotas = styled.div`
 margin:  3rem 3rem 3rem 18rem;
-width: 80rem;
+width: 65rem;
    height: 39rem;
 `;
 
@@ -78,10 +85,10 @@ export const Row = styled.li`
    justify-content: space-between;
 
    &:nth-child(odd) {
-      background:#dedede;
+      background:#ffffff;
    }
    &:nth-child(even) {
-      background:#ffffff;
+      background:#dedede;
    }
 `;
 
@@ -104,7 +111,7 @@ export const DivHeader = styled.div`
 
 export const DivButton = styled.div`
    display: flex;
-   justify-content: ${(props)=> props.end ? 'end' : 'center'};
+   justify-content: ${(props) => props.end ? 'end' : 'center'};
 `;
 
 export const Tag = styled.input`
@@ -120,7 +127,10 @@ export const Tag = styled.input`
 `;
 
 export const DivGeral = styled.div`
-   display: flex;
+
+   display: block;
+   position: fixed;
+
 `;
 
 export const DivLogin = styled.div`
